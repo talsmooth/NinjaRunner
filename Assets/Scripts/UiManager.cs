@@ -65,7 +65,7 @@ public class UiManager : MonoBehaviour
 
     public void GameOverScreen()
     {
-        Debug.Log("Dead");
+       
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
 
@@ -89,7 +89,7 @@ public class UiManager : MonoBehaviour
 
     public void GameResume()
     {
-        Player.PlayerIsLeveledUp -= LevelUp;
+        Player.PlayerIsLeveledUp += LevelUp;
         upgradeScreen.SetActive(false);
         Time.timeScale = 1;
 

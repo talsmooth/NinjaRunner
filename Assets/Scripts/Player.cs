@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     // Score
 
     public int playerScore;
+   
 
 
     private void Awake()
@@ -90,8 +91,10 @@ public class Player : MonoBehaviour
 
         if (playerScore == scoreToLevelUp )
         {
-
+            PlayerIsLeveledUp += LevelUp;
             PlayerIsLeveledUp?.Invoke();
+            PlayerIsLeveledUp -= LevelUp;
+
 
         }
 
@@ -135,6 +138,13 @@ public class Player : MonoBehaviour
 
     }
 
+    public void LevelUp()
+    {
+
+        scoreToLevelUp += 5;
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy" && !isAttacking)
@@ -171,10 +181,11 @@ public class Player : MonoBehaviour
 
     }
 
-    public void IncreaseLife()
+    public void IncreaseMaxLife()
     {
 
         playerMaxLife += playerLifeIncrase;
+        playerLife = playerMaxLife;
 
     }
 

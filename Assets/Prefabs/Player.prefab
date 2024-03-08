@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21e899ee3cebbd46b8bf31781e8fe48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoveSpeed: 10
+  playerMoveSpeed: 15
   playerAttackSpeed: 70
   isAttacking: 0
-  attackRangeTime: 0.5
+  attackRangeTime: 0.2
   attackRangeTimeIncrease: 0.1
   playerLife: 0
   playerMaxLife: 100

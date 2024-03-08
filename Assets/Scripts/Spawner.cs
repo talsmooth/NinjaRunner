@@ -32,8 +32,7 @@ public class
     public void CreateEnemy()
     {
         int chance = Random.Range(0, 101);
-        Debug.Log(chance);
-
+       
         if (chance < enemyChance)
         {
 
