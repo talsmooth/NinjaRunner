@@ -89,6 +89,7 @@ public class UiManager : MonoBehaviour
 
     public void GameResume()
     {
+        Player.PlayerIsLeveledUp -= LevelUp;
         upgradeScreen.SetActive(false);
         Time.timeScale = 1;
 
