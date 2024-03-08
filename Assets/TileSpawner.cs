@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class TileSpawner : MonoBehaviour
 {
-    public GameObject tile;
+    public GameObject tilePrefab; // Prefab reference for the tile
     public int tileSize;
-    private int tileTotalSize;
     public float tileMoveSpeed;
     public List<GameObject> tiles = new List<GameObject>();
-    private Vector3 playerPos;
 
     void Start()
     {
@@ -18,12 +16,10 @@ public class TileSpawner : MonoBehaviour
         // Instantiate the initial tiles
         for (int i = 0; i < 14; i++)
         {
-            GameObject tempTile = Instantiate(tile, new Vector3(0, 0, i * tileSize), Quaternion.identity);
+            GameObject tempTile = Instantiate(tilePrefab, new Vector3(0, 0, i * tileSize), Quaternion.identity);
             tempTile.transform.parent = transform;
             tiles.Add(tempTile);
         }
-
-        tileTotalSize = tileSize * 14; // Update the total size
     }
 
     void Update()
@@ -39,7 +35,7 @@ public class TileSpawner : MonoBehaviour
                 tile.transform.Translate(Vector3.back * Time.deltaTime * Player.Instance.playerMoveSpeed);
 
             // Check if the tile is out of view
-            if (tile.transform.position.z <= -tileSize *2)
+            if (tile.transform.position.z <= -tileSize * 2)
             {
                 // Remove and destroy the tile
                 tiles.RemoveAt(i);
@@ -49,12 +45,10 @@ public class TileSpawner : MonoBehaviour
                 GameObject lastTile = tiles[tiles.Count - 1];
                 float newPositionZ = lastTile.transform.position.z + tileSize;
 
-                GameObject tempTile = Instantiate(tile, new Vector3(0, 0, newPositionZ), Quaternion.identity);
+                GameObject tempTile = Instantiate(tilePrefab, new Vector3(0, 0, newPositionZ), Quaternion.identity);
                 tempTile.transform.parent = transform;
                 tiles.Add(tempTile);
             }
         }
     }
-
-
 }

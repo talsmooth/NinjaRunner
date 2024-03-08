@@ -190,7 +190,7 @@ GameObject:
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -225,7 +225,7 @@ MonoBehaviour:
   enemyChance: 100
   enemies: []
   item: {fileID: 5464131438575573260, guid: 4904026987519db44859c3ad647f23f9, type: 3}
-  itemChance: 10
+  itemChance: 1
   items: []
 --- !u!1 &8061232048908318386
 GameObject:

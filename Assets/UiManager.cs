@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class UiManager : MonoBehaviour
 
@@ -10,6 +11,7 @@ public class UiManager : MonoBehaviour
     public static UiManager Instance;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI lifeText;
     public GameObject gameOverScreen;
     int score;
     
@@ -22,11 +24,13 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         gameOverScreen.SetActive(false);
-        scoreText.text = score.ToString();
+        scoreText.text = Player.Instance.playerScore.ToString();
+        lifeText.text = Player.Instance.playerLife.ToString();
 
         Player.PlayerIsDead += GameOverScreen;
-     
-        Enemy.EnemyIsDead += AddScore;
+        Player.PlayerIsHit += TextReduceLife;
+        Player.PlayerIsAddedScore += TextAddScore;
+        //Enemy.EnemyIsDead += TextAddScore;
     }   
 
     void Update()
@@ -39,12 +43,19 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void AddScore()
+    public void TextAddScore()
     {
 
-        score++;
-        scoreText.text = score.ToString();
+        
+        scoreText.text = Player.Instance.playerScore.ToString();
      
+
+    }
+
+    public void TextReduceLife()
+    {
+
+        lifeText.text =  Player.Instance.playerLife.ToString();
 
     }
 

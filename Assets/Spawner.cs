@@ -14,13 +14,13 @@ public class
     public List<GameObject> items = new List<GameObject>();
     void Start()
     {
-    
+        CreateEnemy();
+        CreateItem();
 
     }
     private void OnEnable()
     {
-        CreateEnemy();
-        CreateItem();
+       
 
     }
 
@@ -31,7 +31,8 @@ public class
 
     public void CreateEnemy()
     {
-        float chance = Random.Range(0, 101);
+        int chance = Random.Range(0, 101);
+        Debug.Log(chance);
 
         if (chance < enemyChance)
         {
@@ -43,7 +44,7 @@ public class
 
             GameObject tempEnemy = Instantiate(enemy, pos, Quaternion.identity);
             tempEnemy.transform.parent = transform;
-            enemies.Add(tempEnemy);
+            
         }
     }
 
@@ -51,7 +52,7 @@ public class
     public void CreateItem()
     {
 
-        float chance = Random.Range(0, 101);
+        int chance = Random.Range(0, 101);
 
         if (chance < itemChance)
         {
@@ -63,7 +64,7 @@ public class
 
             GameObject tempItem = Instantiate(item, pos, Quaternion.identity);
             tempItem.transform.parent = transform;
-            enemies.Add(tempItem);
+           
 
         }
 

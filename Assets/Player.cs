@@ -21,12 +21,22 @@ public class Player : MonoBehaviour
     float movement;
 
     // Life
-    float playerLife;
-    public float playerLifeIncrase;
+    public float playerLife;
     public float playerMaxLife;
+    public float playerLifeIncrase;
+
+
+    // Events
 
     public static event Action PlayerIsAttacking;
+    public static event Action PlayerIsHit;
     public static event Action PlayerIsDead;
+    public static event Action PlayerIsAddedScore;
+
+    // Score
+
+    public int playerScore;
+
 
     private void Awake()
     {
@@ -37,6 +47,11 @@ public class Player : MonoBehaviour
         timer = attackRangeTime;
         playerLife = playerMaxLife;
         rb = GetComponent<Rigidbody>();
+
+        playerScore = 0;
+        PlayerIsAddedScore += AddScore;
+
+        PlayerIsHit += Hit;
     }
 
     void Update()
@@ -44,8 +59,6 @@ public class Player : MonoBehaviour
         // Movement
 
         Move();
-
-
 
         // Attack 
 
@@ -65,16 +78,18 @@ public class Player : MonoBehaviour
             {
 
                 isAttacking = false;
-                timer = 0.5f;
+                timer = attackRangeTime;
 
             }
 
         }
 
+
     }
 
     public void Attack()
     {
+
 
         PlayerIsAttacking?.Invoke();
 
@@ -90,20 +105,51 @@ public class Player : MonoBehaviour
     }
 
 
-    public void Death() 
+    public void Death()
     {
-       
+
+
+    }
+
+    public void Hit()
+    {
+        playerLife -= 10;
+    }
+
+    public void AddScore()
+    {
+
+
+        playerScore++;
+
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag =="Enemy")
+        if (other.gameObject.tag == "Enemy" && !isAttacking)
         {
-            PlayerIsDead += Death;
-            PlayerIsDead?.Invoke();
-            
+
+            PlayerIsHit?.Invoke();
+
+            if (playerLife < 10)
+            {
+
+                PlayerIsDead?.Invoke();
+
+            }
+
         }
+
+        else
+
+            if (other.gameObject.tag == "Enemy" && isAttacking)
+        {
+            
+            PlayerIsAddedScore.Invoke();
+
+        }
+            
     }
 
     // Upgrades

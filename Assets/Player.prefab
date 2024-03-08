@@ -50,11 +50,12 @@ MonoBehaviour:
   playerMoveSpeed: 10
   playerAttackSpeed: 70
   isAttacking: 0
-  attackRangeTime: 0.2
+  attackRangeTime: 0.5
   attackRangeTimeIncrease: 0.1
   playerLife: 0
-  playerLifeIncrase: 10
   playerMaxLife: 100
+  playerLifeIncrase: 10
+  playerScore: 0
 --- !u!54 &970168319302458537
 Rigidbody:
   m_ObjectHideFlags: 0
