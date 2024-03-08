@@ -170,6 +170,13 @@ public class Player : MonoBehaviour
 
         }
             
+        if (other.gameObject.tag == "LevelUpBox")
+        {
+
+
+
+
+        }
     }
 
     // Upgrades

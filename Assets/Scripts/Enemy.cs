@@ -9,15 +9,30 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
 
+    bool moveLeft;
+    bool moveRight;
+    public float speed = 4f;
+
     void Start()
     {
-        
+      
     }
 
    
     void Update()
     {
-        
+
+        if (transform.position.x > 0)
+        {
+            moveLeft = true;
+
+        }
+        if (moveLeft && transform.position.x > -4)
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+
+        }
+
     }
 
 
@@ -43,4 +58,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-}
+
+ 
+
+    }
