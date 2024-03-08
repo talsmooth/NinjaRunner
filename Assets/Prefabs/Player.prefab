@@ -55,6 +55,7 @@ MonoBehaviour:
   playerLife: 0
   playerMaxLife: 100
   playerLifeIncrase: 10
+  scoreToLevelUp: 5
   playerScore: 0
 --- !u!54 &970168319302458537
 Rigidbody:

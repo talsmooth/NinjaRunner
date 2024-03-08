@@ -25,13 +25,16 @@ public class Player : MonoBehaviour
     public float playerMaxLife;
     public float playerLifeIncrase;
 
+    // LevelUp
+    public int scoreToLevelUp;
+
 
     // Events
-
     public static event Action PlayerIsAttacking;
     public static event Action PlayerIsHit;
     public static event Action PlayerIsDead;
     public static event Action PlayerIsAddedScore;
+    public static event Action PlayerIsLeveledUp;
 
     // Score
 
@@ -84,6 +87,13 @@ public class Player : MonoBehaviour
 
         }
 
+
+        if (playerScore == scoreToLevelUp )
+        {
+
+            PlayerIsLeveledUp?.Invoke();
+
+        }
 
     }
 

@@ -833,6 +833,7 @@ MonoBehaviour:
   scoreText: {fileID: 228306740}
   lifeText: {fileID: 2022024961}
   gameOverScreen: {fileID: 1882925024}
+  upgradeScreen: {fileID: 999646171}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1032,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 691110646}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 388656735}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: GameResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &691110646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,7 +1215,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 969357058}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 388656735}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: GameResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &969357058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,7 +1324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Increase max life
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1daabb371c06e4a40afa24c8cb8fba03, type: 2}
   m_sharedMaterial: {fileID: 6997184867574837288, guid: 1daabb371c06e4a40afa24c8cb8fba03,
@@ -1832,7 +1857,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Increase attack range
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1daabb371c06e4a40afa24c8cb8fba03, type: 2}
   m_sharedMaterial: {fileID: 6997184867574837288, guid: 1daabb371c06e4a40afa24c8cb8fba03,
@@ -2240,7 +2265,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2035280792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 388656735}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: GameResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2035280792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2337,7 +2374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: generate health packs
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1daabb371c06e4a40afa24c8cb8fba03, type: 2}
   m_sharedMaterial: {fileID: 6997184867574837288, guid: 1daabb371c06e4a40afa24c8cb8fba03,

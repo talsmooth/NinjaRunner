@@ -13,6 +13,7 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI lifeText;
     public GameObject gameOverScreen;
+    public GameObject upgradeScreen;
     int score;
     
 
@@ -23,14 +24,17 @@ public class UiManager : MonoBehaviour
 
     void Start()
     {
+        upgradeScreen.SetActive(false);
         gameOverScreen.SetActive(false);
+
         scoreText.text = Player.Instance.playerScore.ToString();
         lifeText.text = Player.Instance.playerLife.ToString();
 
+        Player.PlayerIsLeveledUp += LevelUp;
         Player.PlayerIsDead += GameOverScreen;
         Player.PlayerIsHit += TextReduceLife;
         Player.PlayerIsAddedScore += TextAddScore;
-        //Enemy.EnemyIsDead += TextAddScore;
+      
     }   
 
     void Update()
@@ -76,7 +80,18 @@ public class UiManager : MonoBehaviour
 
     }
 
+    public void LevelUp()
+    {
+        upgradeScreen.SetActive(true);
+        Time.timeScale = 0;
 
+    }
 
+    public void GameResume()
+    {
+        upgradeScreen.SetActive(false);
+        Time.timeScale = 1;
+
+    }
 
 }
