@@ -15,6 +15,10 @@ public class
     void Start()
     {
     
+
+    }
+    private void OnEnable()
+    {
         CreateEnemy();
         CreateItem();
 

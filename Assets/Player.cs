@@ -1,20 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
+
+
+    // Movement
     Rigidbody rb;
     public float playerMoveSpeed;
-    public float attackSpeed;
-    private bool isAttacking;
+    public float playerAttackSpeed;
+    [HideInInspector] public bool isAttacking;
 
+    // Attack
+    public float attackRangeTime;
+    public float attackRangeTimeIncrease;
     float timer;
     float movement;
 
+    // Life
+    float playerLife;
+    public float playerLifeIncrase;
+    public float playerMaxLife;
+
+    public static event Action PlayerIsAttacking;
+    public static event Action PlayerIsDead;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
-        timer = 0.5f;
+        timer = attackRangeTime;
+        playerLife = playerMaxLife;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -22,9 +43,7 @@ public class Player : MonoBehaviour
     {
         // Movement
 
-        movement = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector3(movement * playerMoveSpeed, 0, 10);
-        
+        Move();
 
 
 
@@ -57,8 +76,65 @@ public class Player : MonoBehaviour
     public void Attack()
     {
 
-        rb.AddForce(0, 0, attackSpeed, ForceMode.Impulse);
+        PlayerIsAttacking?.Invoke();
 
     }
 
+    public void Move()
+    {
+
+
+        movement = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector3(movement * playerMoveSpeed, 0, 0);
+
+    }
+
+
+    public void Death() 
+    {
+       
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag =="Enemy")
+        {
+            PlayerIsDead += Death;
+            PlayerIsDead?.Invoke();
+            
+        }
+    }
+
+    // Upgrades
+
+    public void IncreaseAttackRange()
+    {
+
+        attackRangeTime += attackRangeTimeIncrease;
+
+    }
+
+    public void IncreaseLife()
+    {
+
+        playerMaxLife += playerLifeIncrase;
+
+    }
+
+    public void IncreaseDamage()
+    {
+
+
+
+    }
+
+    public void HealthPacks()
+    {
+
+
+
+    }
+
+  
 }

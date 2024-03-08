@@ -1,50 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2478360193621409053
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8312859246525910479}
-  - component: {fileID: 9017775423914992916}
-  m_Layer: 0
-  m_Name: TileWall
-  m_TagString: TileWall
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8312859246525910479
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2478360193621409053}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6428498715335586098}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &9017775423914992916
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2478360193621409053}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 5, z: 10}
-  m_Center: {x: -5, y: 2.5, z: 0}
 --- !u!1 &4272133258769495808
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +11,6 @@ GameObject:
   - component: {fileID: 7998721428296306569}
   - component: {fileID: 8683830609249103753}
   - component: {fileID: 5171687423274343801}
-  - component: {fileID: 7544332010454318021}
   m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
@@ -129,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7544332010454318021
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4272133258769495808}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4748799725235606742
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6428498715335586098}
-  - component: {fileID: -518054731525226578}
+  - component: {fileID: 6704612544676836184}
   m_Layer: 0
   m_Name: Tile1
   m_TagString: Untagged
@@ -220,22 +161,22 @@ Transform:
   - {fileID: 586627967212784739}
   - {fileID: 831115343810100986}
   - {fileID: 8804329529534700625}
-  - {fileID: 8312859246525910479}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-518054731525226578
-MonoBehaviour:
+--- !u!65 &6704612544676836184
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6428498715335586102}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cafd75448ffce9749a4f53d736b0c377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.1, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7742754095679108369
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 7530549412928120185, guid: f6caa76876686514e96991d12cd8c71f, type: 3}
-  enemyChance: 30
+  enemyChance: 100
   enemies: []
   item: {fileID: 5464131438575573260, guid: 4904026987519db44859c3ad647f23f9, type: 3}
   itemChance: 10

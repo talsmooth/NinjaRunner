@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TileSpawner : MonoBehaviour
 {
-
     public GameObject tile;
     public int tileSize;
     private int tileTotalSize;
@@ -12,52 +11,50 @@ public class TileSpawner : MonoBehaviour
     public List<GameObject> tiles = new List<GameObject>();
     private Vector3 playerPos;
 
-
     void Start()
     {
-        for (int i = 0; i < 10; i++)
+        transform.position = Player.Instance.transform.position;
+
+        // Instantiate the initial tiles
+        for (int i = 0; i < 14; i++)
         {
-
-            GameObject tempTile = Instantiate(tile, new Vector3(0, 0, tileTotalSize), Quaternion.identity);
+            GameObject tempTile = Instantiate(tile, new Vector3(0, 0, i * tileSize), Quaternion.identity);
             tempTile.transform.parent = transform;
-            tileTotalSize += tileSize;
             tiles.Add(tempTile);
-
         }
+
+        tileTotalSize = tileSize * 14; // Update the total size
     }
 
     void Update()
     {
-
-
-         playerPos = GameManager.Instance.player.transform.position;
-         transform.position = new Vector3(0, 0, playerPos.z);
-        
-
-        
-        List<GameObject> tilesToRemove = new List<GameObject>(tiles);
-
-        foreach (GameObject tile in tilesToRemove)
+        for (int i = tiles.Count - 1; i >= 0; i--)
         {
-            tile.transform.Translate(Vector3.back * Time.deltaTime * tileMoveSpeed);
+            GameObject tile = tiles[i];
 
-            if (tile.transform.position.z <= -10)
+            // Move the tiles based on player state
+            if (Player.Instance.isAttacking)
+                tile.transform.Translate(Vector3.back * Time.deltaTime * Player.Instance.playerAttackSpeed);
+            else
+                tile.transform.Translate(Vector3.back * Time.deltaTime * Player.Instance.playerMoveSpeed);
+
+            // Check if the tile is out of view
+            if (tile.transform.position.z <= -tileSize *2)
             {
-                tiles.Remove(tile);
-
+                // Remove and destroy the tile
+                tiles.RemoveAt(i);
                 Destroy(tile);
 
-                GameObject tempTile = Instantiate(tile, new Vector3(0, 0, playerPos.z+90), Quaternion.identity);
+                // Spawn a new tile after the last tile
+                GameObject lastTile = tiles[tiles.Count - 1];
+                float newPositionZ = lastTile.transform.position.z + tileSize;
+
+                GameObject tempTile = Instantiate(tile, new Vector3(0, 0, newPositionZ), Quaternion.identity);
                 tempTile.transform.parent = transform;
                 tiles.Add(tempTile);
             }
         }
-    
-
     }
 
 
-
 }
-
-

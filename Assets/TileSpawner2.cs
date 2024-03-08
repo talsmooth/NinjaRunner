@@ -37,7 +37,7 @@ public class TileSpawner2 : MonoBehaviour
     {
 
 
-        playerPos = GameManager.Instance.player.transform.position;
+        playerPos = Player.Instance.transform.position;
         transform.position = new Vector3(0, 0, playerPos.z);
 
 
