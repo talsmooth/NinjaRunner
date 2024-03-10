@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.18547153, g: 0.31431386, b: 0.4932614, a: 1}
+  m_FogColor: {r: 0.10980392, g: 0.22745098, b: 0.3764706, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.015
   m_LinearFogStart: 70
@@ -612,7 +612,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.18547153, g: 0.31431386, b: 0.4932614, a: 1}
+  m_BackGroundColor: {r: 0.106541626, g: 0.22464462, b: 0.374663, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1714,11 +1714,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1870729822794789406, guid: 0e0e8f340559aee489fc75dba2b8e90a,
-        type: 3}
-      propertyPath: playerKillsToFrenzy
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 492655754037573652, guid: 0e0e8f340559aee489fc75dba2b8e90a,
         type: 3}
       propertyPath: m_Name
