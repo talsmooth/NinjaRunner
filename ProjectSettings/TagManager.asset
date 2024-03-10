@@ -9,6 +9,8 @@ TagManager:
   - TileWall
   - Checker
   - TileSpawner
+  - UpgradeBox
+  - LaserWall
   layers:
   - Default
   - TransparentFX

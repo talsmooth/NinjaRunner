@@ -1,7 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+
+
 
 public class Enemy : MonoBehaviour
 {
@@ -9,30 +12,34 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
 
-    bool moveLeft;
-    bool moveRight;
-    public float speed = 4f;
+    public float moveSpeed = 2.0f;
+    bool isLeft;
+
+    public int chanceToPatrol;
+    bool isPatrol;
+
 
     void Start()
     {
-      
+
+        int rand = UnityEngine.Random.Range(0, 101);
+        if (rand <= chanceToPatrol )
+        {
+            isPatrol = true;
+        }
+
     }
 
    
     void Update()
     {
 
-        if (transform.position.x > 0)
+        if (isPatrol)
         {
-            moveLeft = true;
-
+            Patrol();
         }
-        if (moveLeft && transform.position.x > -4)
-        {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
-
-        }
-
+       
+     
     }
 
 
@@ -58,7 +65,38 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void Patrol()
 
+    {
+
+        if (!isLeft)
+        {
+
+            transform.Translate(Vector3.left * Time.deltaTime * 5);
+        }
+
+
+        if (transform.position.x < -4)
+        {
+
+            isLeft = true;
+
+        }
+
+        if (isLeft)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * 5);
+
+
+        }
+
+        if (transform.position.x > 4)
+        {
+            isLeft = false;
+
+        }
+
+    }
  
 
     }

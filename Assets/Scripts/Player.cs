@@ -23,23 +23,31 @@ public class Player : MonoBehaviour
     // Life
     public float playerLife;
     public float playerMaxLife;
-    public float playerLifeIncrase;
+    public float playerLifeIncrease;
 
-    // LevelUp
-    public int scoreToLevelUp;
+    // Frenzy
+    public int playerKillsToFrenzy;
+    public int playerKills;
+    public float FrenzyTime;
+    private float frenzyTimer;
+    public bool isFrenzy;
+
+
+
 
 
     // Events
     public static event Action PlayerIsAttacking;
-    public static event Action PlayerIsHit;
     public static event Action PlayerIsDead;
     public static event Action PlayerIsAddedScore;
     public static event Action PlayerIsLeveledUp;
+    public static event Action PlayerIsInFrenzy;
 
-    // Score
+    // Effects
+    public ParticleSystem frenzyEffect;
 
-    public int playerScore;
-   
+
+
 
 
     private void Awake()
@@ -52,10 +60,14 @@ public class Player : MonoBehaviour
         playerLife = playerMaxLife;
         rb = GetComponent<Rigidbody>();
 
-        playerScore = 0;
-        PlayerIsAddedScore += AddScore;
+        
 
-        PlayerIsHit += Hit;
+        PlayerIsAddedScore += AddKills;
+        PlayerIsAttacking += Attack;
+        PlayerIsInFrenzy += Frenzy;
+
+        frenzyTimer = FrenzyTime;
+
     }
 
     void Update()
@@ -68,15 +80,15 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            isAttacking = true;
+            PlayerIsAttacking?.Invoke();
+           
         }
 
-        if (isAttacking)
+        if (isAttacking && !isFrenzy)
         {
 
             timer -= Time.deltaTime;
 
-            Attack();
 
             if (timer < 0)
             {
@@ -88,23 +100,51 @@ public class Player : MonoBehaviour
 
         }
 
+        // Life
 
-        if (playerScore == scoreToLevelUp )
+        if (playerLife == 0)
         {
-            PlayerIsLeveledUp += LevelUp;
-            PlayerIsLeveledUp?.Invoke();
-            PlayerIsLeveledUp -= LevelUp;
 
+            PlayerIsDead?.Invoke();
 
         }
+
+        // Frenzy
+
+        if (playerKills == playerKillsToFrenzy)
+        {
+            isFrenzy = true;
+            isAttacking = false;
+
+            frenzyTimer -= Time.deltaTime; 
+
+           // GameObject tempEffect = Instantiate(frenzyEffect,transform.position,Quaternion.identity);
+            frenzyEffect.Play();
+
+            
+
+            if(frenzyTimer <= 0)
+            {
+                playerKills = 0;
+                isFrenzy = false;
+                frenzyTimer = FrenzyTime;
+
+                
+
+            }
+
+        }
+
+        else frenzyEffect.Stop();      
+        
 
     }
 
     public void Attack()
     {
 
+        isAttacking = true;
 
-        PlayerIsAttacking?.Invoke();
 
     }
 
@@ -129,35 +169,29 @@ public class Player : MonoBehaviour
         playerLife -= 10;
     }
 
-    public void AddScore()
+    public void AddKills()
     {
 
 
-        playerScore++;
+        playerKills++;
 
 
     }
 
-    public void LevelUp()
+    public void Frenzy()
     {
 
-        scoreToLevelUp += 5;
+        playerKills = 0;
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" && !isAttacking)
+        if (other.gameObject.tag == "Enemy" && !isAttacking && !isFrenzy)
         {
 
-            PlayerIsHit?.Invoke();
+            Hit();
 
-            if (playerLife < 10)
-            {
-
-                PlayerIsDead?.Invoke();
-
-            }
 
         }
 
@@ -169,14 +203,26 @@ public class Player : MonoBehaviour
             PlayerIsAddedScore.Invoke();
 
         }
-            
-        if (other.gameObject.tag == "LevelUpBox")
+
+        if (other.gameObject.tag == "LaserWall")
         {
 
-
+            playerLife = 0;
 
 
         }
+
+
+        if (other.gameObject.tag == "UpgradeBox")
+        {
+
+            PlayerIsLeveledUp?.Invoke();
+
+
+        }
+
+
+
     }
 
     // Upgrades
@@ -191,7 +237,7 @@ public class Player : MonoBehaviour
     public void IncreaseMaxLife()
     {
 
-        playerMaxLife += playerLifeIncrase;
+        playerMaxLife += playerLifeIncrease;
         playerLife = playerMaxLife;
 
     }
@@ -203,10 +249,10 @@ public class Player : MonoBehaviour
 
     }
 
-    public void HealthPacks()
+    public void ExtraFrenzyTime()
     {
 
-
+       FrenzyTime += 1;
 
     }
 

@@ -27,7 +27,7 @@ public class CameraMove : MonoBehaviour
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
         }
 
-        if(Player.Instance.isAttacking)
+        if(Player.Instance.isAttacking || Player.Instance.isFrenzy)
         {
             Vector3 targetPosition = target.position + offset;
 

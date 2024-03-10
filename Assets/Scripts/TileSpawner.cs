@@ -29,7 +29,7 @@ public class TileSpawner : MonoBehaviour
             GameObject tile = tiles[i];
 
             // Move the tiles based on player state
-            if (Player.Instance.isAttacking)
+            if (Player.Instance.isAttacking || Player.Instance.isFrenzy)
                 tile.transform.Translate(Vector3.back * Time.deltaTime * Player.Instance.playerAttackSpeed);
             else
                 tile.transform.Translate(Vector3.back * Time.deltaTime * Player.Instance.playerMoveSpeed);
