@@ -33,9 +33,6 @@ public class UiManager : MonoBehaviour
         TextReduceLife();
         FrenzySlider();
 
-        Player.PlayerIsLeveledUp += LevelUp;
-        Player.PlayerIsDead += GameOverScreen;
-      
     }   
 
     void Update()

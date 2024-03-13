@@ -47,26 +47,18 @@ public class Player : MonoBehaviour
     public ParticleSystem frenzyEffect;
 
 
-
-
-
     private void Awake()
     {
         Instance = this;
     }
     void Start()
-    {
+    {  
+         // Initialize
         timer = attackRangeTime;
         playerLife = playerMaxLife;
         rb = GetComponent<Rigidbody>();
-
-        
-
-        PlayerIsAddedScore += AddKills;
-        PlayerIsAttacking += Attack;
-        PlayerIsInFrenzy += Frenzy;
-
         frenzyTimer = FrenzyTime;
+
 
     }
 
@@ -200,7 +192,8 @@ public class Player : MonoBehaviour
             if (other.gameObject.tag == "Enemy" && isAttacking)
         {
             
-            PlayerIsAddedScore.Invoke();
+          
+             AddKills();
 
         }
 

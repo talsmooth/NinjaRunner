@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     public int chanceToPatrol;
     bool isPatrol;
 
+    public Animator animator;
+
 
     void Start()
     {
@@ -37,8 +39,13 @@ public class Enemy : MonoBehaviour
         if (isPatrol)
         {
             Patrol();
+
+            animator.SetTrigger("Run");
         }
        
+       else
+
+        animator.SetTrigger("Idle");
      
     }
 
