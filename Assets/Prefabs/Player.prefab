@@ -99,9 +99,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1737706889828983884, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
-      propertyPath: m_Controller
+      propertyPath: m_Avatar
       value: 
-      objectReference: {fileID: 9100000, guid: b42940aef2afb8346bfc984741462a8a, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2725162522574613967, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_Name
